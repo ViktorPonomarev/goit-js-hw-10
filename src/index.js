@@ -36,8 +36,57 @@ function onInputChenge() {
                     'Too many matches found. Please enter a more specific name.'
                 );
             } else if (response.length < 10 && response.length >= 2) {
-                
+                refs.countryList.insertAdjacentHTML(
+                    'beforeend',
+                    renderCountryInfo(response)
+                );
+            } else {
+                refs.countryInfo.insertAdjacentHTML(
+                    'beforeend',
+                    renderCountryInfo(response)
+                );
             }
-        });
+        })
+        // Ошибку со статус кодом 404 - не найдено, с помощъю библиотеки Notiflix!
+      .catch(() => {
+        Notiflix.Notify.failure('Oops, there is no country with that name');
+        return [];
+    });
+  
+}
+// Оформили флаг и название страни
+function renderCountryInfo(contries) {
+    return contries
+        .map(({ flags, name }) => {
+            return `
+          <li class="country-list__item">
+              <img class="country-list__flag" src="${flags.svg}" alt="Flag of ${name.official}" width = 50px height = 50px>
+              <h2 class="country-list__name">${name.official}</h2>
+          </li>
+          `;
+        })
+        .join('');
+}
 
-    }
+// Оформили список Фильтрация полей
+ 
+function renderCountryInfo(contries) {
+    return contries
+        .map(({ flags, name, capital, population, languages }) => { 
+            return `
+      <img width="50px" height="50px" src='${flags.svg}' 
+      alt='${name.official} flag' />
+        <ul class="country-info__list">
+            <li class="country-info__item"><p><b>Name: </b>${
+              name.official
+            }</p></li>
+            <li class="country-info__item"><p><b>Capital: </b>${capital}</p></li>
+            <li class="country-info__item"><p><b>Population: </b>${population}</p></li>
+            <li class="country-info__item"><p><b>Languages: </b>${Object.values(
+              languages
+            )}</p></li>
+        </ul>
+        `;
+        })
+    .join('');
+}
