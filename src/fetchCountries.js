@@ -11,20 +11,21 @@ function fetchCountries(name) {
     `https://restcountries.com/v3.1/name/${name}?fields=name,capital,population,flags,languages`
   ).then(response => {
     
-      if (!response.ok) {
+    if (!response.ok) {
         
-          throw new Error(response.status);
-      }
+      throw new Error(response.status);
+    }
       
-      return response.json();
+    return response.json();
        
   });
-   
 }
 
-// console.log(fetchCountries(name));  
 
-// fetch('https://restcountries.com/v3.1/name/peru')
+// fetchCountries('peru')
+//   .then(countries => console.log(countries[0])
+    
+// fetch('https://restcountries.com/v3.1/name/peru?fields=name,capital,population,flags,languages')
 //     .then(response => {
 //         return response.json();
 //     })
