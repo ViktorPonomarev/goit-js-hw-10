@@ -28,6 +28,7 @@ function onInputChenge() {
     // Связываем логику с функционалом
     fetchCountries(name)
         .then(response => { 
+            
             refs.countryList.innerHTML = '';
             refs.countryInfo.innerHTML = '';
             // Интерфейс с помощъю библиотеки Notiflix
@@ -46,13 +47,15 @@ function onInputChenge() {
                     renderCountryInfo(response)
                 );
             }
+            
         })
+        
         // Ошибку со статус кодом 404 - не найдено, с помощъю библиотеки Notiflix!
       .catch(() => {
         Notiflix.Notify.failure('Oops, there is no country with that name');
         return [];
     });
-  
+ 
 }
 // Оформили флаг и название страни
 function renderCountryInfo(contries) {
@@ -77,14 +80,10 @@ function renderCountryInfo(contries) {
       <img width="50px" height="50px" src='${flags.svg}' 
       alt='${name.official} flag' />
         <ul class="country-info__list">
-            <li class="country-info__item"><p><b>Name: </b>${
-              name.official
-            }</p></li>
+            <li class="country-info__item"><p><b>Name: </b>${name.official}</p></li>
             <li class="country-info__item"><p><b>Capital: </b>${capital}</p></li>
             <li class="country-info__item"><p><b>Population: </b>${population}</p></li>
-            <li class="country-info__item"><p><b>Languages: </b>${Object.values(
-              languages
-            )}</p></li>
+            <li class="country-info__item"><p><b>Languages: </b>${Object.values(languages)}</p></li>
         </ul>
         `;
         })
