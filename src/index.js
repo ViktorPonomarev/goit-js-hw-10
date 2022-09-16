@@ -25,6 +25,7 @@ function onInputChenge() {
         return ((refs.countryList.innerHTML = ''),
         (refs.countryInfo.innerHTML = ''));
     }
+
     // Связываем логику с функционалом
     fetchCountries(name)
         .then(response => { 
@@ -32,14 +33,14 @@ function onInputChenge() {
             refs.countryList.innerHTML = '';
             refs.countryInfo.innerHTML = '';
             // Интерфейс с помощъю библиотеки Notiflix
-            if (response.length < 10) {
+            if (response.length > 10) {
                 Notiflix.Notify.info(
                     'Too many matches found. Please enter a more specific name.'
                 );
             } else if (response.length < 10 && response.length >= 2) {
                 refs.countryList.insertAdjacentHTML(
                     'beforeend',
-                    renderCountryInfo(response)
+                    renderCountryList(response)
                 );
             } else {
                 refs.countryInfo.insertAdjacentHTML(
@@ -58,7 +59,7 @@ function onInputChenge() {
  
 }
 // Оформили флаг и название страни
-function renderCountryInfo(contries) {
+function renderCountryList(contries) {
     return contries
         .map(({ flags, name }) => {
             return `
@@ -71,7 +72,7 @@ function renderCountryInfo(contries) {
         .join('');
 }
 
-// Оформили список Фильтрация полей
+// Оформили список Фильтрация полей c информацией
  
 function renderCountryInfo(contries) {
     return contries

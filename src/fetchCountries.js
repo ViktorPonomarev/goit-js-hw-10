@@ -5,6 +5,8 @@
  /* Напиши функцию fetchCountries(name) которая делает HTTP-запрос на
 ресурс name и возвращает промис с массивом стран - результатом запроса. 
  */
+
+  
 function fetchCountries(name) {
     
   return fetch(
@@ -19,13 +21,14 @@ function fetchCountries(name) {
     return response.json();
        
   });
-  
+ 
 }
 
 
-// fetchCountries('peru')
+//  fetchCountries('peru')
 //   .then(countries => console.log(countries[0])
-    
+
+
 // fetch('https://restcountries.com/v3.1/name/peru?fields=name,capital,population,flags,languages')
 //     .then(response => {
 //         return response.json();
