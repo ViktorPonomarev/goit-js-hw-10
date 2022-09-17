@@ -29,7 +29,7 @@ function onInputChenge() {
     // Связываем логику с функционалом
     fetchCountries(name)
         .then(response => { 
-            
+            console.log(response);
             refs.countryList.innerHTML = '';
             refs.countryInfo.innerHTML = '';
             // Интерфейс с помощъю библиотеки Notiflix
